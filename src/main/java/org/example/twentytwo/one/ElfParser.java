@@ -1,26 +1,21 @@
 package org.example.twentytwo.one;
 
+import org.example.twentytwo.utils.FileParser;
+
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 public class ElfParser {
     public static final String EMPTY_LINE_DELIMITER = "\\n\\n+";
 
     public ArrayList<Elf> parseCalorieFile(String filePath) throws FileNotFoundException {
-        InputStream io = getClass().getClassLoader().getResourceAsStream(filePath);
-
-        if (io == null) {
-            throw new FileNotFoundException("File path not found");
-        }
-
-        Scanner scanner = new Scanner(io).useDelimiter(EMPTY_LINE_DELIMITER);
         ArrayList<Elf> elves = new ArrayList<>();
+        FileParser fileParser = new FileParser();
+        List<String> elfCalories = fileParser.readFile(filePath, EMPTY_LINE_DELIMITER);
 
-        while (scanner.hasNext()) {
-            String caloriesString = scanner.next();
-            Elf elf = new Elf(parseCaloriesFromString(caloriesString));
+        for(String elfCalorie: elfCalories) {
+            Elf elf = new Elf(parseCaloriesFromString(elfCalorie));
             elves.add(elf);
         }
 
