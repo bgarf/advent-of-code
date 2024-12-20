@@ -1,6 +1,6 @@
 package org.example.twentytwo.two;
 
-import org.example.twentytwo.utils.FileParser;
+import org.example.utils.FileParser;
 
 import java.io.FileNotFoundException;
 import java.util.List;

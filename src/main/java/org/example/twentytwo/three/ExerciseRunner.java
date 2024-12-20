@@ -1,8 +1,7 @@
 package org.example.twentytwo.three;
-import org.example.twentytwo.utils.FileParser;
+import org.example.utils.FileParser;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExerciseRunner {

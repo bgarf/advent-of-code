@@ -1,4 +1,4 @@
-package org.example.twentytwo.utils;
+package org.example.utils;
 
 
 import java.io.FileNotFoundException;
