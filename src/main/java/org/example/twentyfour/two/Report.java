@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.lang.Integer.signum;
 import static java.lang.Math.abs;
@@ -11,20 +12,18 @@ import static java.lang.Math.abs;
 public class Report {
     List<Integer> levels;
 
-    public Report (String levelsString) {
+    public Report(String levelsString) {
         levels = Arrays.stream(levelsString.split(" ")).map(Integer::parseInt).toList();
     }
 
     public boolean isSafe() {
-        if (checkSafety(levels)) {
-            return true;
-        } else {
-            List<Boolean> testedLevels = IntStream.range(0, levels.size()).mapToObj(index -> {
-                List<Integer> newLevel = removeLevelFromLevels(index);
-                return checkSafety(newLevel);
-            }).filter(isSafe -> isSafe).toList();
-            return !testedLevels.isEmpty();
-        }
+        return !Stream.concat(
+                    Stream.of(levels),
+                    IntStream.range(0, levels.size()).mapToObj(this::removeLevelFromLevels)
+                )
+                .map(this::checkSafety)
+                .filter(isSafe -> isSafe)
+                .toList().isEmpty();
     }
 
     private List<Integer> removeLevelFromLevels(int index) {
