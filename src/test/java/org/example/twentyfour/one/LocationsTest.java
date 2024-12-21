@@ -21,7 +21,7 @@ class LocationsTest {
     }
     @Test
     public void summaryShouldReturnAListOfSortedLocationsAtSecondPosition() {
-        List<String> summaryInput = List.of("2 5", "3 6", "1 4");
+        List<String> summaryInput = List.of("2   5", "3   6", "1   4");
         Locations summary = new Locations(summaryInput);
 
         List<Integer> actual = summary.getLocationTwoIdsSorted();
